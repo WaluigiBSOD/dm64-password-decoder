@@ -1,0 +1,31 @@
+/*
+	WaluigiBSOD
+
+	waluigibsod.github.io
+*/
+
+/* Body */
+
+body {
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: "Lucida Console";
+}
+
+input.code {
+	text-align: center;
+	transform: scale(3);
+}
+
+p.error {
+	font-size: large;
+}
+
+table.result {
+	font-size: large;
+}
+
+img.name {
+	height: 24px;
+	width: 24px;
+}
