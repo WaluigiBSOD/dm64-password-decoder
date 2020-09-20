@@ -361,6 +361,30 @@ function _DecodePassword(Password = "") {
 			
 			document.getElementById("name").innerHTML = "";
 			
+			if (NameA < 0 || NameA > 322) {
+				_WriteError("Invalid name");
+				
+				return;
+			}
+			
+			if (NameB < 0 || NameB > 322) {
+				_WriteError("Invalid name");
+				
+				return;
+			}
+			
+			if (NameC < 0 || NameC > 322) {
+				_WriteError("Invalid name");
+				
+				return;
+			}
+			
+			if (NameD < 0 || NameD > 322) {
+				_WriteError("Invalid name");
+				
+				return;
+			}
+			
 			while (NameA.toString().length < 3)
 				NameA = "0" + NameA;
 			
