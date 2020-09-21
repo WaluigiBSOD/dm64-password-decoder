@@ -18,7 +18,7 @@
 
 // Constants
 
-const Version = "1.0 Beta";
+const Version = "1.0";
 
 const PasswordCharacters = "ABCDEFGHJKLMNPQRSTVWXY1234567890";
 
