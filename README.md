@@ -1,5 +1,6 @@
 # Dr. Mario 64 Password Decoder
 JavaScript port of [Dr. Mario 64 Password Encoder/Decoder Tool](https://github.com/WaluigiBSOD/dm64-password-tool), including only decoding functionality.
+If the player name contains Japanese text it can even display it, unlike [dm64-password-tool](https://github.com/WaluigiBSOD/dm64-password-tool).
 ## License
 The JavaScript source code is released under the GNU General Public License v 3.0 (see LICENSE.MD in the root of the repository for a copy of the license and for more information).
 ### Disclaimer
