@@ -1,6 +1,14 @@
 # Dr. Mario 64 Password Decoder
 JavaScript port of [Dr. Mario 64 Password Encoder/Decoder Tool](https://github.com/WaluigiBSOD/dm64-password-tool), including only decoding functionality.
 If the player name contains Japanese text it can even display it, unlike [dm64-password-tool](https://github.com/WaluigiBSOD/dm64-password-tool).
+## How to use
+1. Play Dr. Mario 64 and, after winning or losing a Classic, Marathon or Score Attack game, press **Z + R + L + D-Pad Left** when the menu is on-screen.
+2. Write down the displayed password
+3. Open [https://waluigibsod.github.io/dm64-password-decoder/](https://waluigibsod.github.io/dm64-password-decoder/)
+4. Enter the password (e.g. E5HQ3E80B03JA5316R1F).
+5. Read the decoded info.
+
+More info [on TCRF](https://tcrf.net/Dr._Mario_64#Passwords).
 ## License
 The JavaScript source code is released under the GNU General Public License v 3.0 (see LICENSE.MD in the root of the repository for a copy of the license and for more information).
 ### Disclaimer
