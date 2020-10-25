@@ -19,12 +19,24 @@
 		
 		<h2 id="version">Now Loading ...</h2>
 		
-		<script type="text/javascript" src="js/dm64decoder.js"></script>
+		<script type="text/javascript" src="js/constants.js"></script>
+		
+		<script type="text/javascript" src="js/flags.js"></script>
+		
+		<script type="text/javascript" src="js/result.js"></script>
+		
+		<script type="text/javascript" src="js/io.js"></script>
+		
+		<script type="text/javascript" src="js/check.js"></script>
+		
+		<script type="text/javascript" src="js/decoder.js"></script>
+		
+		<script type="text/javascript" src="js/version.js"></script>
 		
 		<div align="center" class="main">
 			
-			<input type="text" autocomplete="off" id="code" class="code" size="25" maxlength="20" onclick="_ResetInput()" oninput="_DecodePassword()" value=""></input>
-			<p id="error" class="error"><br>Enter the password</p>
+			<input type="text" autocomplete="off" id="code" class="code" size="35" maxlength="20" onclick="_ResetInput()" oninput="_CheckPassword()" value=""></input>
+			<p id="error" class="error"><br>Enter password</p>
 			
 			<table id="result" class="result" style="visibility: hidden;">
 				<tr>
