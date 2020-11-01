@@ -10,7 +10,7 @@ If the player name contains Japanese text it can even display it, unlike [dm64-p
 
 More info [on TCRF](https://tcrf.net/Dr._Mario_64#Passwords).
 ## License
-The JavaScript source code is released under the GNU General Public License v 3.0 (see LICENSE.MD in the root of the repository for a copy of the license and for more information).
+The JavaScript source code is released under the GNU General Public License v 3.0 (see LICENSE in the root of the repository for a copy of the license and for more information).
 ### Disclaimer
 This program may contain copyrighted material, the use of which may not have been specifically authorized by the copyright owner.
 This material is available in an effort to research on the password system of the videogame "Dr. Mario 64", to provide a tool that allows to know about it more deeply than before.
