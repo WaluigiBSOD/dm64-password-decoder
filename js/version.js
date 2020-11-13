@@ -18,12 +18,17 @@
 
 // Constants
 
-const Version = "1.1";
+const Version = "1.2";
+const VersionDate = "13 November 2020";
 
 // Functions
 
 function _SetVersion() {
 	document.getElementById("version").innerHTML = "Version " + Version;
+}
+
+function _SetVersionDate() {
+	document.getElementById("version").innerHTML = VersionDate;
 }
 
 _SetVersion();

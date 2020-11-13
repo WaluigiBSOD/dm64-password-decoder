@@ -12,6 +12,10 @@ body {
 	font-family: "Lucida Console";
 }
 
+h2 {
+	display: table-cell;
+}
+
 input.code {
 	text-align: center;
 	transform: scale(3);
@@ -22,10 +26,5 @@ p.error {
 }
 
 table.result {
-	font-size: large;
-}
-
-img.name {
-	height: 24px;
-	width: 24px;
+	font-size: 24px;
 }
