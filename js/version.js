@@ -18,8 +18,8 @@
 
 // Constants
 
-const Version = "1.2";
-const VersionDate = "13 November 2020";
+const Version = "1.2.1";
+const VersionDate = "16 December 2020";
 
 // Functions
 
