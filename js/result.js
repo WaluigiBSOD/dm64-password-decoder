@@ -1,5 +1,5 @@
 // Dr. Mario 64 Password Decoder
-// Copyright (C) 2020 WaluigiBSOD (waluigibsod.github.io)
+// Copyright (C) 2020-2021 WaluigiBSOD (waluigibsod.github.io)
 //
 // This file is part of Dr. Mario 64 Password Decoder.
 //
@@ -18,6 +18,62 @@
 
 // Functions
 
+function _ResultTableReset() {
+	var retELEMENT = "";
+	
+	return retELEMENT;
+}
+
+function _ResultTableAddBlankRow() {
+	var retELEMENT = "<tr><td></br></td></tr>";
+	
+	return retELEMENT;
+}
+
+function _ResultTableAddColumn(Caption, CaptionID, EntryID) {
+	var retELEMENT = "<tr>";
+	
+	if (CaptionID.length > 0)
+		retELEMENT += "<td id=\"" + CaptionID + "\">" + Caption + ": </td>";
+	else
+		retELEMENT += "<td>" + Caption + ": </td>";
+	
+	retELEMENT += "<td id=\"" + EntryID + "\"></td>";
+	
+	retELEMENT += "</tr>";
+	
+	return retELEMENT;
+}
+
+function _GenerateResultTableSkeleton() {
+	var TableBody = "";
+	
+	TableBody += _ResultTableAddBlankRow();
+	
+	var CurrentElement;
+	
+	for (var i=0;i<ResultEntries.length;i++) {
+		CurrentElement = ResultEntries[i];
+		
+		if (CurrentElement.length != 3 || CurrentElement[0] == "") {
+			TableBody = _ResultTableReset();
+			
+			break;
+		} else {
+			CurrentElement[0].trim();
+			CurrentElement[1].trim().toLowerCase();
+			CurrentElement[2].trim().toLowerCase();
+			
+			if (CurrentElement[2] == "")
+				CurrentElement[2] = CurrentElement[0].toLowerCase();
+			
+			TableBody += _ResultTableAddColumn(CurrentElement[0],CurrentElement[1],CurrentElement[2]);
+		}
+	}
+	
+	document.getElementById("result").innerHTML = TableBody;
+}
+
 function _ShowResult() {
 	document.getElementById("error").innerHTML = "";
 	document.getElementById("result").style = "";
@@ -26,3 +82,7 @@ function _ShowResult() {
 function _HideResult() {
 	document.getElementById("result").style = "visibility: hidden;";
 }
+
+// To be executed
+
+_GenerateResultTableSkeleton();

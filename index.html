@@ -9,15 +9,15 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<title>Dr. Mario 64 Password Decoder</title>
+		<title id="page-title">Now Loading ...</title>
 	</head>
 	
 	<meta charset="utf-8"/>
 	
 	<body>
-		<h1 id="title"">Dr. Mario 64 Password Decoder</h1>
+		<h1 id="title"">Now Loading</h1>
 
-		<h2 id="version" onmouseenter="_SetVersionDate()" onmouseleave="_SetVersion()">Now Loading ...</h2>
+		<h2 id="version" onmouseenter="_SetVersionDate()" onmouseleave="_SetVersion()">...</h2>
 		
 		<br>
 		
@@ -27,15 +27,11 @@
 		
 		<script type="text/javascript" src="js/flags.js"></script>
 		
-		<script type="text/javascript" src="js/result.js"></script>
-		
 		<script type="text/javascript" src="js/io.js"></script>
 		
 		<script type="text/javascript" src="js/check.js"></script>
 		
 		<script type="text/javascript" src="js/decoder.js"></script>
-		
-		<script type="text/javascript" src="js/version.js"></script>
 		
 		<div align="center" class="main">
 			
@@ -43,40 +39,13 @@
 			<p id="error" class="error"><br>Enter password</p>
 			
 			<table id="result" class="result" style="visibility: hidden;">
-				<tr>
-					<br>
-				</tr>
-				<tr>
-					<td>Mode: </td>
-					<td id="mode"></td>
-				</tr>
-				<tr>
-					<td id="leveltext">Level: </td>
-					<td id="level"></td>
-				</tr>
-				<tr>
-					<td>Speed: </td>
-					<td id="speed"></td>
-				</tr>
-				<tr>
-					<td>Score: </td>
-					<td id="score"></td>
-				</tr>
-				<tr>
-					<td>Time: </td>
-					<td id="time"></td>
-				</tr>
-				<tr>
-					<td>Player Name: </td>
-					<td id="name"></td>
-				</tr>
-				<tr>
-					<td>Frame Count (modulo 1024): </td>
-					<td id="framecount"></td>
-				</tr>
 			</table>
 			
 		</div>
+		
+		<script type="text/javascript" src="js/result.js"></script>
+		
+		<script type="text/javascript" src="js/info.js"></script>
 	
 	</body>
 </html>

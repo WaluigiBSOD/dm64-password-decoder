@@ -1,5 +1,5 @@
 // Dr. Mario 64 Password Decoder
-// Copyright (C) 2020 WaluigiBSOD (waluigibsod.github.io)
+// Copyright (C) 2020-2021 WaluigiBSOD (waluigibsod.github.io)
 //
 // This file is part of Dr. Mario 64 Password Decoder.
 //
@@ -38,5 +38,7 @@ function _ResetInput() {
 		_WriteError("Enter password",true);
 	}
 }
+
+// To be executed
 
 _ResetInput();

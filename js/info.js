@@ -1,5 +1,5 @@
 // Dr. Mario 64 Password Decoder
-// Copyright (C) 2020 WaluigiBSOD (waluigibsod.github.io)
+// Copyright (C) 2020-2021 WaluigiBSOD (waluigibsod.github.io)
 //
 // This file is part of Dr. Mario 64 Password Decoder.
 //
@@ -18,10 +18,17 @@
 
 // Constants
 
-const Version = "1.2.1";
-const VersionDate = "16 December 2020";
+const Title = "Dr. Mario 64 Password Decoder";
+
+const Version = "1.2.2";
+const VersionDate = "16 January 2021";
 
 // Functions
+
+function _SetTitle() {
+	document.getElementById("page-title").innerHTML = Title;
+	document.getElementById("title").innerHTML = Title;
+}
 
 function _SetVersion() {
 	document.getElementById("version").innerHTML = "Version " + Version;
@@ -30,5 +37,9 @@ function _SetVersion() {
 function _SetVersionDate() {
 	document.getElementById("version").innerHTML = VersionDate;
 }
+
+// To be executed
+
+_SetTitle();
 
 _SetVersion();

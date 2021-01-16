@@ -1,5 +1,5 @@
 // Dr. Mario 64 Password Decoder
-// Copyright (C) 2020 WaluigiBSOD (waluigibsod.github.io)
+// Copyright (C) 2020-2021 WaluigiBSOD (waluigibsod.github.io)
 //
 // This file is part of Dr. Mario 64 Password Decoder.
 //
@@ -213,7 +213,7 @@ function _DecodePassword(Password = "") {
 			// Game Level
 			
 			if (GameMode != GameModeClassic) {
-				document.getElementById("leveltext").innerHTML = "Game Level:";
+				document.getElementById("level-text").innerHTML = "Game Level:";
 
 				if (Level == GameLevelEasy)
 					document.getElementById("level").innerHTML = "Easy";
@@ -227,7 +227,7 @@ function _DecodePassword(Password = "") {
 					return;
 				}
 			} else {
-				document.getElementById("leveltext").innerHTML = "Virus Level:";
+				document.getElementById("level-text").innerHTML = "Virus Level:";
 				document.getElementById("level").innerHTML = Level;
 				
 				if (Level < VirusLevelMinimum || Level > VirusLevelMaximum) {
