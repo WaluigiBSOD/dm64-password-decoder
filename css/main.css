@@ -9,7 +9,7 @@
 body {
 	background-color: #000000;
 	color: #FFFFFF;
-	font-family: "Lucida Console";
+	font-family: "Lucida Console", monospace;
 }
 
 h2 {
