@@ -80,7 +80,7 @@ function _ShowResult() {
 }
 
 function _HideResult() {
-	document.getElementById("result").style = "visibility: hidden;";
+	document.getElementById("result").style = "display: none;";
 }
 
 // To be executed

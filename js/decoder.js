@@ -304,7 +304,10 @@ function _DecodePassword(Password = "") {
 				while (Name[i].toString().length < 3)
 					Name[i] = "0" + Name[i];
 				
-				document.getElementById("name").innerHTML += "<img class=\"name\" src=font/" + Name[i] + ".png></img>";
+				if (Name[i] == "000")
+					document.getElementById("name").innerHTML += "<img class=\"name-empty\" src=\"font/" + Name[i] + ".png\">";
+				else
+					document.getElementById("name").innerHTML += "<img class=\"name\" src=\"font/" + Name[i] + ".png\">";
 			}
 			
 			// Frame Count (modulo 1024)

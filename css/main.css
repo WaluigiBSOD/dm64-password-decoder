@@ -28,3 +28,12 @@ p.error {
 table.result {
 	font-size: 24px;
 }
+
+img.name-empty {
+	border-bottom-style: dotted;
+	color: #808080;
+}
+
+div.cache {
+	display: none;
+}
