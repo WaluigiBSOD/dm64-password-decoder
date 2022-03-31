@@ -116,7 +116,7 @@ function _DecodePassword(Password = "") {
 			}
 		}
 		
-		// Constant (frame count)
+		// Constant (frame count, modulo 1024)
 		
 		FrameCountConstant = TableMaskFrameCountLower[FrameCountX] ^ TableMaskFrameCountUpper[FrameCountY];
 		
@@ -295,7 +295,7 @@ function _DecodePassword(Password = "") {
 			document.getElementById("name").innerHTML = "";
 			
 			for (var i=0;i<Name.length;i++) {
-				if (Name[i] < NameFontCharacterMinimum || Name[i] > NameFontCharacterMaximum) {
+				if (NameFontValidCharacters.indexOf(Name[i]) == -1) {
 					_WriteError("Invalid name");
 					
 					return;
@@ -317,8 +317,6 @@ function _DecodePassword(Password = "") {
 				
 				return;
 			}
-			
-			document.getElementById("framecount").innerHTML = FrameCount;
 			
 			// Show result
 			

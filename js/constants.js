@@ -132,8 +132,90 @@ const ScoreMaximum = 999999;
 const TimeMinimum = 0;
 const TimeMaximum = 59999;
 
-const NameFontCharacterMinimum = 0;
-const NameFontCharacterMaximum = 322;
+const NameFontValidCharacters = [
+    0,          // (Space)
+
+    163,        // A
+    164,        // B
+    165,        // C
+    166,        // D
+    167,        // E
+    168,        // F
+    169,        // G
+    170,        // H
+    171,        // I
+    172,        // J
+    173,        // K
+    174,        // L
+    175,        // M
+    176,        // N
+    177,        // O
+    178,        // P
+    179,        // Q
+    180,        // R
+    181,        // S
+    182,        // T
+    183,        // U
+    184,        // V
+    185,        // W
+    186,        // X
+    187,        // Y
+    188,        // Z
+    189,        // a
+    190,        // b
+    191,        // c
+    192,        // d
+    193,        // e
+    194,        // f
+    195,        // g
+    196,        // h
+    197,        // i
+    198,        // j
+    199,        // k
+    200,        // l
+    201,        // m
+    202,        // n
+    203,        // o
+    204,        // p
+    205,        // q
+    206,        // r
+    207,        // s
+    208,        // t
+    209,        // u
+    210,        // v
+    211,        // w
+    212,        // x
+    213,        // y
+    214,        // z
+    215,        // 0
+    216,        // 1
+    217,        // 2
+    218,        // 3
+    219,        // 4
+    220,        // 5
+    221,        // 6
+    222,        // 7
+    223,        // 8
+    224,        // 9
+	
+    225,        // ~
+    226,        // / (small)
+    227,        // (Centered Dot)
+    228,        // .
+    229,        // ?
+	
+    231,        // (Heart)
+    232,        // (Star)
+    233,        // (Circle)
+    234,        // (Cross)
+    235,        // / (big)
+    236,        // :
+    237,        // %
+    238,        // ´
+	
+    242,        // &
+    243         // . (copy)
+];
 
 const FrameCountMinimum = 0;
 const FrameCountMaximum = 1023;
@@ -167,9 +249,5 @@ const ResultEntries = [
 	
 	[
 		"Player Name", "", "name"
-	],
-	
-	[
-		"Frame Count (modulo 1024)", "", "framecount"
 	]
 ]

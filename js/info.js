@@ -20,8 +20,8 @@
 
 const Title = "Dr. Mario 64 Password Decoder";
 
-const Version = "1.3";
-const VersionDate = "17 January 2022";
+const Version = "1.4";
+const VersionDate = "31 March 2022";
 
 // Functions
 

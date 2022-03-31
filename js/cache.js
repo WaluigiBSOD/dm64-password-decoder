@@ -23,8 +23,8 @@ function _CacheFont() {
 	
 	document.getElementById("cache").innerHTML = "";
 	
-	for (var i=NameFontCharacterMinimum;i<=NameFontCharacterMaximum;i++) {
-		ImageName = i.toString();
+	for (var i=0;i<NameFontValidCharacters.length;i++) {
+		ImageName = NameFontValidCharacters[i].toString();
 		
 		while (ImageName.length < 3)
 			ImageName = "0" + ImageName;
