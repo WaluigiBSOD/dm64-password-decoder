@@ -20,13 +20,12 @@
 
 const Title = "Dr. Mario 64 Password Decoder";
 
-const Version = "1.4.1";
-const VersionDate = "13 September 2022";
+const Version = "1.4.2";
+const VersionDate = "14 November 2022";
 
 // Functions
 
 function _SetTitle() {
-	document.getElementById("page-title").innerHTML = Title;
 	document.getElementById("title").innerHTML = Title;
 }
 
