@@ -20,13 +20,27 @@
 
 const Title = "Dr. Mario 64 Password Decoder";
 
-const Version = "1.4.2";
-const VersionDate = "14 November 2022";
+const Version = "1.5";
+const VersionDate = "6 November 2023";
 
 // Functions
 
 function _SetTitle() {
-	document.getElementById("title").innerHTML = Title;
+	var SplitTitle = Title.split(" ");
+	
+	var FinalTitle = "<i>";
+	
+	for (var i=0;i<SplitTitle.length;i++) {
+		if (SplitTitle[i].toLowerCase().search("password") > -1)
+			FinalTitle += "</i>";
+		
+		FinalTitle += SplitTitle[i];
+		
+		if (i + 1 < SplitTitle.length)
+			FinalTitle += " ";
+	}
+	
+	document.getElementById("title").innerHTML = FinalTitle;
 }
 
 function _SetVersion() {

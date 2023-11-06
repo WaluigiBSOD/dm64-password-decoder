@@ -36,9 +36,9 @@ function _DecodePassword(Password = "") {
 		var FrameCountX = 0;
 		var FrameCountY = 0;
 		
-		var CheckSum = 0;
-		var CheckSumLastTwoBits = 0;
-		var TestCheckSum = 0;
+		var Checksum = 0;
+		var ChecksumLastTwoBits = 0;
+		var TestChecksum = 0;
 		
 		var GameMode = 0;
 		var Level = 0;
@@ -47,7 +47,7 @@ function _DecodePassword(Password = "") {
 		var Time = 0;
 		var FrameCount = 0;
 		
-		var Name = [0,0,0,0];
+		var Name = Array(4).fill(0);
 		
 		var TemporaryX;
 		var TemporaryY;
@@ -75,6 +75,7 @@ function _DecodePassword(Password = "") {
 			
 			if (TemporaryX > -1) {
 				PasswordChunkHigh |= TemporaryX << 25;
+				
 				if (i < 6)
 					PasswordChunkHigh >>= 5;
 			} else {
@@ -91,6 +92,7 @@ function _DecodePassword(Password = "") {
 			
 			if (TemporaryX > -1) {
 				PasswordChunkMedium |= TemporaryX << 25;
+				
 				if (i < 12)
 					PasswordChunkMedium >>= 5;
 			} else {
@@ -107,6 +109,7 @@ function _DecodePassword(Password = "") {
 			
 			if (TemporaryX > -1) {
 				PasswordChunkLow |= TemporaryX << 25;
+				
 				if (i < 18)
 					PasswordChunkLow >>= 5;
 			} else {
@@ -116,7 +119,7 @@ function _DecodePassword(Password = "") {
 			}
 		}
 		
-		// Constant (frame count, modulo 1024)
+		// Randomization Constant (frame count, modulo 1024)
 		
 		FrameCountConstant = TableMaskFrameCountLower[FrameCountX] ^ TableMaskFrameCountUpper[FrameCountY];
 		
@@ -126,11 +129,11 @@ function _DecodePassword(Password = "") {
 		
 		// Constant (checksum)
 		
-		CheckSumLastTwoBits = (PasswordChunkHigh >> 28) & 0x3;
+		ChecksumLastTwoBits = (PasswordChunkHigh >> 28) & 0x3;
 		
-		PasswordChunkHigh ^= TableMaskHigh[CheckSumLastTwoBits];
-		PasswordChunkMedium ^= TableMaskMiddle[CheckSumLastTwoBits];
-		PasswordChunkLow ^= TableMaskLower[CheckSumLastTwoBits];
+		PasswordChunkHigh ^= TableMaskHigh[ChecksumLastTwoBits];
+		PasswordChunkMedium ^= TableMaskMiddle[ChecksumLastTwoBits];
+		PasswordChunkLow ^= TableMaskLower[ChecksumLastTwoBits];
 		
 		// Time
 
@@ -152,9 +155,9 @@ function _DecodePassword(Password = "") {
 		Speed = PasswordChunkLow & 0x3;
 		PasswordChunkLow >>= 2;
 		
-		// CheckSum (1/2)
+		// Checksum (1/2)
 
-		CheckSum = PasswordChunkLow & 0xFF;
+		Checksum = PasswordChunkLow & 0xFF;
 		
 		// Level (2/2)
 
@@ -179,23 +182,22 @@ function _DecodePassword(Password = "") {
 		Score = PasswordChunkHigh & 0xFFFFF;
 		PasswordChunkHigh >>= 20;
 		
-		// CheckSum (2/2)
+		// Checksum (2/2)
 
-		CheckSum = (CheckSum << 2) | (PasswordChunkHigh & 0x3);
-
-		CheckSum &= 0x3FF;
+		Checksum = (Checksum << 2) | (PasswordChunkHigh & 0x3);
+		Checksum &= 0x3FF;
 		
-		// Test CheckSum
+		// Test Checksum
 		
-		TestCheckSum = GameMode + Level + Speed;
-		TestCheckSum += (Score & 0x3FF);
-		TestCheckSum += ((Score >> 10) & 0x3FF);
-		TestCheckSum += (Time & 0xFF);
-		TestCheckSum += ((Time >> 8) & 0xFF);
-		TestCheckSum += Name[0] + Name[1] + Name[2] + Name[3];
-		TestCheckSum &= 0x3FF;
+		TestChecksum = GameMode + Level + Speed;
+		TestChecksum += (Score & 0x3FF);
+		TestChecksum += ((Score >> 10) & 0x3FF);
+		TestChecksum += (Time & 0xFF);
+		TestChecksum += ((Time >> 8) & 0xFF);
+		TestChecksum += Name[0] + Name[1] + Name[2] + Name[3];
+		TestChecksum &= 0x3FF;
 		
-		if (CheckSum == TestCheckSum) {
+		if (Checksum == TestChecksum) {
 			// Mode
 			
 			if (GameMode == GameModeClassic)

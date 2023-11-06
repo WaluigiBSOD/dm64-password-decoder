@@ -224,30 +224,54 @@ const FrameCountMaximum = 1023;
 //
 // 0: Caption
 // 1: Caption ID (optional)
-// 2: ID of the area to be filled by the decoder
+// 2: Area ID (to be filled by the decoder)
 
 const ResultEntries = [
 	[
-		"Mode", "", "mode"
+		"Player Name",			// Caption
+		"",						// Caption ID
+		"name"					// Area ID
 	],
 	
 	[
-		"Level", "level-text", "level"
+		"",						// Caption
+		"",						// Caption ID
+		""						// Area ID
 	],
 	
 	[
-		"Speed", "", "speed"
+		"Score",				// Caption
+		"",						// Caption ID
+		"score"					// Area ID
 	],
 	
 	[
-		"Score", "", "score"
+		"Time",					// Caption
+		"",						// Caption ID
+		"time"					// Area ID
 	],
 	
 	[
-		"Time", "", "time"
+		"",						// Caption
+		"",						// Caption ID
+		""						// Area ID
 	],
 	
 	[
-		"Player Name", "", "name"
+		"Mode",					// Caption
+		"",						// Caption ID
+		"mode"					// Area ID
+	],
+	
+	[
+		"Level",				// Caption
+		"level-text",			// Caption ID
+		"level"					// Area ID
+	],
+	
+	[
+		"Speed",				// Caption
+		"",						// Caption ID
+		"speed"					// Area ID
 	]
 ]

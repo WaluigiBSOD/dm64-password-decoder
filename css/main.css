@@ -30,7 +30,12 @@ h2 {
 	display: table-cell;
 }
 
+hr {
+	color: #FFFFFF;
+}
+
 input.code {
+	font-family: "Lucida Console", monospace;
 	text-align: center;
 	transform: scale(3);
 }

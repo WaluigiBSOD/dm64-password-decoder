@@ -4,13 +4,19 @@ JavaScript port of [Dr. Mario 64 Password Encoder/Decoder Tool](https://github.c
 
 ## How to use
 
-1. Play Dr. Mario 64 and, after winning or losing a Classic, Marathon or Score Attack game, press **Z + R + L + D-Pad Left** when the menu is on-screen.
-2. Write down the displayed password
+1. Play Dr. Mario 64 and, after either winning or losing a Classic, Marathon or Score Attack game, press **Z + R + L + D-Pad Left** when the menu is on-screen.
+2. Write down the displayed password.
 3. Open [https://waluigibsod.github.io/dm64-password-decoder/](https://waluigibsod.github.io/dm64-password-decoder/).
 4. Enter the password (e.g. `E5HQ3E80B03JA5316R1F`).
 5. Read the decoded info.
 
 More info [on TCRF](https://tcrf.net/Dr._Mario_64#Passwords).
+
+## Program
+
+Both this program and [Dr. Mario 64 Password Encoder/Decoder Tool](https://github.com/WaluigiBSOD/dm64-password-tool) were written using the original source code of the game that leaked in July 2020 as reference.
+
+The original implementation of the password encoding algorithm inside the source code of the game can be found at `bbgames.7z\bbgames.tar\d1\routefree\bbgames\depot\dm64\src\passwd.c`, for some reason the password decoding algorithm is absent but it can be easily obtained by inverting the encoding one.
 
 ## License
 

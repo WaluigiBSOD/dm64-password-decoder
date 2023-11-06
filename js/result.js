@@ -18,12 +18,6 @@
 
 // Functions
 
-function _ResultTableReset() {
-	var retELEMENT = "";
-	
-	return retELEMENT;
-}
-
 function _ResultTableAddBlankRow() {
 	var retELEMENT = "<tr><td></br></td></tr>";
 	
@@ -34,9 +28,9 @@ function _ResultTableAddColumn(Caption, CaptionID, EntryID) {
 	var retELEMENT = "<tr>";
 	
 	if (CaptionID.length > 0)
-		retELEMENT += "<td id=\"" + CaptionID + "\">" + Caption + ": </td>";
+		retELEMENT += "<td id=\"" + CaptionID + "\">" + Caption + ":&emsp;</td>";
 	else
-		retELEMENT += "<td>" + Caption + ": </td>";
+		retELEMENT += "<td>" + Caption + ":&emsp;</td>";
 	
 	retELEMENT += "<td id=\"" + EntryID + "\"></td>";
 	
@@ -56,9 +50,7 @@ function _GenerateResultTableSkeleton() {
 		CurrentElement = ResultEntries[i];
 		
 		if (CurrentElement.length != 3 || CurrentElement[0] == "") {
-			TableBody = _ResultTableReset();
-			
-			break;
+			TableBody += "<tr><td colspan=\"2\"><hr></td></tr>";
 		} else {
 			CurrentElement[0].trim();
 			CurrentElement[1].trim().toLowerCase();
