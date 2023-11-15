@@ -32,7 +32,7 @@
 	<body>
 		<h1 id="title">Now Loading</h1>
 
-		<h2 id="version" onmouseenter="_SetVersionDate()" onmouseleave="_SetVersion()">...</h2>
+		<h2 id="version" onmouseenter="if (typeof _SetVersionDate === 'function') _SetVersionDate()" onmouseleave="if (typeof _SetVersion === 'function') _SetVersion()">...</h2>
 		
 		<br>
 		
@@ -50,7 +50,7 @@
 		
 		<div align="center" class="main">
 			
-			<input type="text" autocomplete="off" id="code" class="code" size="25" maxlength="20" onclick="_ResetInput()" oninput="_CheckPassword()" value=""></input>
+			<input type="text" autocomplete="off" id="code" class="code" size="25" maxlength="20" onclick="if (typeof _ResetInput === 'function') _ResetInput()" oninput="if (typeof _CheckPassword === 'function') _CheckPassword()" value=""></input>
 			<p id="error" class="error"><br>Enter password</p>
 			
 			<table id="result" class="result" style="display: none;">
