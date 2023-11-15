@@ -16,7 +16,7 @@ More info [on TCRF](https://tcrf.net/Dr._Mario_64#Passwords).
 
 Both this program and [Dr. Mario 64 Password Generator/Decoder Tool](https://github.com/WaluigiBSOD/dm64-password-tool) were written using the original source code of the game that leaked in July 2020 as reference.
 
-The original implementation of the password generation algorithm inside the source code of the game can be found at `bbgames.7z\bbgames.tar\d1\routefree\bbgames\depot\dm64\src\passwd.c`, for some reason the password decoding algorithm is absent but it can be easily obtained by inverting the encoding one.
+The original implementation of the password generation algorithm inside the source code of the game can be found at `bbgames.7z\bbgames.tar\d1\routefree\bbgames\depot\dm64\src\passwd.c`, for some reason the password decoding algorithm is absent but it can be easily obtained by inverting the generation one.
 
 ## License
 
