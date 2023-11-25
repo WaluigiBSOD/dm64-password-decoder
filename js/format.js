@@ -16,43 +16,24 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-// Constants
-
-const Title = "Dr. Mario 64 Password Decoder";
-
-const Version = "1.5.2";
-const VersionDate = "25 November 2023";
-
 // Functions
 
-function _SetTitle() {
-	var SplitTitle = Title.split(" ");
-	
-	var FinalTitle = "<i>";
-	
-	for (var i=0;i<SplitTitle.length;i++) {
-		if (SplitTitle[i].toLowerCase().search("password") > -1)
-			FinalTitle += "</i>";
-		
-		FinalTitle += SplitTitle[i];
-		
-		if (i + 1 < SplitTitle.length)
-			FinalTitle += " ";
-	}
-	
-	document.getElementById("title").innerHTML = FinalTitle;
+function _FormatTime(Time) {
+	var TimeDeciSec;
+	var TimeSec;
+	var TimeMin;
+			
+	TimeDeciSec = Time % 10;
+	TimeSec = Math.floor(Time / 10);
+	TimeMin = Math.floor(TimeSec / 60);
+
+	TimeSec %= 60;
+			
+	while (TimeSec.toString().length < 2)
+		TimeSec = "0" + TimeSec;
+			
+	while (TimeMin.toString().length < 2)
+		TimeMin = "0" + TimeMin;
+			
+	return TimeMin + " : " + TimeSec + " . " + TimeDeciSec;
 }
-
-function _SetVersion() {
-	document.getElementById("version").innerHTML = "Version " + Version;
-}
-
-function _SetVersionDate() {
-	document.getElementById("version").innerHTML = VersionDate;
-}
-
-// To be executed
-
-_SetTitle();
-
-_SetVersion();

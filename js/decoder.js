@@ -274,23 +274,7 @@ function _DecodePassword(Password = "") {
 				return;
 			}
 			
-			var TimeDecSec;
-			var TimeSec;
-			var TimeMin;
-			
-			TimeDecSec = Time % 10;
-			TimeSec = Math.floor(Time / 10);
-			TimeMin = Math.floor(TimeSec / 60);
-
-			TimeSec %= 60;
-			
-			while (TimeSec.toString().length < 2)
-				TimeSec = "0" + TimeSec;
-			
-			while (TimeMin.toString().length < 2)
-				TimeMin = "0" + TimeMin;
-			
-			document.getElementById("time").innerHTML = TimeMin + " : " + TimeSec + " . " + TimeDecSec;
+			document.getElementById("time").innerHTML = _FormatTime(Time);
 			
 			// Name
 			
