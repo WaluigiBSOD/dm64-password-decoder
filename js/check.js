@@ -20,19 +20,25 @@
 
 function _CheckPassword() {
 	var Password = document.getElementById("code").value;
-	var PasswordChanged = false;
+	
+	// Removal of anything except printable ASCII characters
+	
+	Password = Password.replace("/[\u{0000}-\u{001F}\u{007F}-\u{FFFF}]/gu","");
+	
+	// Processing
 	
 	Password = Password.toUpperCase();
 	
 	for (var i=0;i<Password.length;i++)
 		if (PasswordCharacters.indexOf(Password.charAt(i)) == -1) {
-			Password = Password.replace(Password.charAt(i),"");
+			Password = Password.slice(0,i) + Password.slice(i + 1,Password.length);
 			
-			PasswordChanged = true;
+			i--;
 		}
 	
 	document.getElementById("code").value = Password;
 	
-	if (!PasswordChanged)
-		_DecodePassword(Password);
+	// Decoding
+	
+	_DecodePassword(Password);
 }
