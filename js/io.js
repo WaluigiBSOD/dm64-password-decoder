@@ -38,7 +38,3 @@ function _ResetInput() {
 		_WriteError("Enter password",true);
 	}
 }
-
-// To be executed
-
-_ResetInput();
