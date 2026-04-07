@@ -18,30 +18,30 @@
 
 // Constants
 
-const PasswordCharacters = "ABCDEFGHJKLMNPQRSTVWXY1234567890";
+const PasswordValidCharacters = "ABCDEFGHJKLMNPQRSTVWXY1234567890";
 
-const TableMaskHigh = [
+const TableMaskPasswordChunkX = [
 	0x0B626835,
 	0x0763337A,
 	0x0F4D6F49,
 	0x06343069
 ];
 
-const TableMaskMiddle = [
+const TableMaskPasswordChunkY = [
 	0x03DF4B61,
 	0x040E7254,
 	0x0A456B4F,
 	0x092E476F
 ];
 
-const TableMaskLower = [
+const TableMaskPasswordChunkZ = [
 	0x08C26B8A,
 	0x0D73B9A1,
 	0x053AD652,
 	0x024DF62E
 ];
 
-const TableMaskFrameCountLower = [
+const TableMaskFrameCountX = [
 	0x81021794,
 	0xF4967A99,
 	0xB403DEC6,
@@ -76,7 +76,7 @@ const TableMaskFrameCountLower = [
 	0x62C46329
 ];
 
-const TableMaskFrameCountUpper = [
+const TableMaskFrameCountY = [
 	0xE435FBDF,
 	0xE2384C76,
 	0xD702AE2A,
@@ -111,28 +111,25 @@ const TableMaskFrameCountUpper = [
 	0x61F91740
 ];
 
-const GameModeClassic = 0;
+const GameModeClassic =     0;
 const GameModeScoreAttack = 1;
-const GameModeMarathon = 2;
+const GameModeMarathon =    2;
 
-const GameLevelEasy = 0;
-const GameLevelNormal = 1;
-const GameLevelHard = 2;
+const GameLevelEasy =       0;
+const GameLevelNormal =     1;
+const GameLevelHard =       2;
 
-const SpeedLow = 0;
-const SpeedMedium = 1;
-const SpeedHigh = 2;
+const SpeedLow =            0;
+const SpeedMedium =         1;
+const SpeedHigh =           2;
 
-const VirusLevelMinimum = 0;
-const VirusLevelMaximum = 24;
+const VirusLevelMaximum =   24;
 
-const ScoreMinimum = 0;
-const ScoreMaximum = 999999;
+const ScoreMaximum =        999999;
 
-const TimeMinimum = 0;
-const TimeMaximum = 59999;
+const TimeMaximum =         59999;
 
-const NameFontValidCharacters = [
+const PlayerNameFontValidCharacters = [
     0,          // (Space)
 
     163,        // A
@@ -217,9 +214,6 @@ const NameFontValidCharacters = [
     243         // . (copy)
 ];
 
-const FrameCountMinimum = 0;
-const FrameCountMaximum = 1023;
-
 // Result Table Entry Format
 //
 // 0: Caption
@@ -274,4 +268,4 @@ const ResultEntries = [
 		"",						// Caption ID
 		"speed"					// Area ID
 	]
-]
+];

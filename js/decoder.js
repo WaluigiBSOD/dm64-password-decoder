@@ -22,15 +22,11 @@ function _DecodePassword(Password) {
 	ValidPassword = false;
 	
 	if (Password.length == 20) {
-		var PasswordChunkHigh = 0;
-		var PasswordChunkMedium = 0;
-		var PasswordChunkLow = 0;
+		var PasswordChunk = Array(3).fill(0);
 		
-		var FrameCountX = 0;
-		var FrameCountY = 0;
+		var ObfuscationConstant;
 		
 		var Checksum = 0;
-		var ChecksumLastTwoBits = 0;
 		var TestChecksum = 0;
 		
 		var GameMode = 0;
@@ -40,154 +36,144 @@ function _DecodePassword(Password) {
 		var Time = 0;
 		var FrameCount = 0;
 		
-		var Name = Array(4).fill(0);
+		var PlayerName = Array(4).fill(0);
 		
 		var TemporaryX;
 		var TemporaryY;
 		
+		var i;
+		var j;
+		
 		// Frame Count (modulo 1024)
 		
-		TemporaryX = PasswordCharacters.indexOf(Password.charAt(0));
-		TemporaryY = PasswordCharacters.indexOf(Password.charAt(19));
+		TemporaryX = PasswordValidCharacters.indexOf(Password.charAt(0));
+		TemporaryY = PasswordValidCharacters.indexOf(Password.charAt(19));
 		
 		if (TemporaryX > -1 && TemporaryY > -1) {
 			FrameCount = TemporaryX | (TemporaryY << 5);
 			
-			FrameCountX = TemporaryX;
-			FrameCountY = TemporaryY;
+			// Obfuscation Constant (frame count, modulo 1024)
+		
+			ObfuscationConstant = TableMaskFrameCountX[TemporaryX] ^ TableMaskFrameCountY[TemporaryY];
 		} else {
 			_WriteError("Wrong character(s) in password");
 			
 			return;
 		}
 		
-		// Password Chunk High
+		// ###   Password   ###
+		//
+		//    20 characters
+		//
+		// V                  V
+		// E5HQ3E80B03JA5316R1F
+		//
+		// ^                  ^
+		// X                  Y
+		//      FrameCount
+		//
+		//  ^^^^^^^^^^^^^^^^^^
+		//     Data Chunks
+		//
+		//          ||
+		//          VV
+		//
+		//  ^^^^^^
+		//    X
+		//
+		//        ^^^^^^
+		//          Y
+		//
+		//              ^^^^^^
+		//                Z
 			
-		for (var i=1;i<=6;i++) {
-			TemporaryX = PasswordCharacters.indexOf(Password.charAt(i));
-			
-			if (TemporaryX > -1) {
-				PasswordChunkHigh |= TemporaryX << 25;
+		for (i=0;i<3;i++) {
+			for (j=(6 * i) + 1;j<=6 * (i + 1);j++) {
+				TemporaryX = PasswordValidCharacters.indexOf(Password.charAt(j));
 				
-				if (i < 6)
-					PasswordChunkHigh >>= 5;
-			} else {
-				_WriteError("Wrong character(s) in password");
-				
-				return;
+				if (TemporaryX > -1) {
+					PasswordChunk[i] |= TemporaryX << 25;
+					
+					if (j < 6 * (i + 1))
+						PasswordChunk[i] >>= 5;
+				} else {
+					_WriteError("Wrong character(s) in password");
+					
+					return;
+				}
 			}
+			
+			PasswordChunk[i] ^= ObfuscationConstant;
 		}
 		
-		// Password Chunk Medium
-			
-		for (var i=7;i<=12;i++) {
-			TemporaryX = PasswordCharacters.indexOf(Password.charAt(i));
-			
-			if (TemporaryX > -1) {
-				PasswordChunkMedium |= TemporaryX << 25;
-				
-				if (i < 12)
-					PasswordChunkMedium >>= 5;
-			} else {
-				_WriteError("Wrong character(s) in password");
-				
-				return;
-			}
-		}
+		// Checksum (1/2)
 		
-		// Password Chunk Low
-			
-		for (var i=13;i<=18;i++) {
-			TemporaryX = PasswordCharacters.indexOf(Password.charAt(i));
-			
-			if (TemporaryX > -1) {
-				PasswordChunkLow |= TemporaryX << 25;
-				
-				if (i < 18)
-					PasswordChunkLow >>= 5;
-			} else {
-				_WriteError("Wrong character(s) in password");
-				
-				return;
-			}
-		}
+		Checksum = (PasswordChunk[0] >> 28) & 0x3;
 		
-		// Randomization Constant (frame count, modulo 1024)
-		
-		FrameCountConstant = TableMaskFrameCountLower[FrameCountX] ^ TableMaskFrameCountUpper[FrameCountY];
-		
-		PasswordChunkHigh ^= FrameCountConstant;
-		PasswordChunkMedium ^= FrameCountConstant;
-		PasswordChunkLow ^= FrameCountConstant;
-		
-		// Constant (checksum)
-		
-		ChecksumLastTwoBits = (PasswordChunkHigh >> 28) & 0x3;
-		
-		PasswordChunkHigh ^= TableMaskHigh[ChecksumLastTwoBits];
-		PasswordChunkMedium ^= TableMaskMiddle[ChecksumLastTwoBits];
-		PasswordChunkLow ^= TableMaskLower[ChecksumLastTwoBits];
+		PasswordChunk[0] ^= TableMaskPasswordChunkX[Checksum];
+		PasswordChunk[1] ^= TableMaskPasswordChunkY[Checksum];
+		PasswordChunk[2] ^= TableMaskPasswordChunkZ[Checksum];
 		
 		// Time
 
-		Time = PasswordChunkLow & 0xFFFF;
-		PasswordChunkLow >>= 16;
+		Time = PasswordChunk[2] & 0xFFFF;
+		PasswordChunk[2] >>= 16;
 		
 		// Level (1/2)
 
-		Level = PasswordChunkLow & 0x3;
-		PasswordChunkLow >>= 2;
+		Level = PasswordChunk[2] & 0x3;
+		PasswordChunk[2] >>= 2;
 		
-		// Game mode
+		// Mode
 
-		GameMode = PasswordChunkLow & 0x3;
-		PasswordChunkLow >>= 2;
+		GameMode = PasswordChunk[2] & 0x3;
+		PasswordChunk[2] >>= 2;
 		
 		// Speed
 
-		Speed = PasswordChunkLow & 0x3;
-		PasswordChunkLow >>= 2;
-		
-		// Checksum (1/2)
-
-		Checksum = PasswordChunkLow & 0xFF;
-		
-		// Level (2/2)
-
-		Level = (Level << 6) | (PasswordChunkMedium & 0x3F);
-		PasswordChunkMedium >>= 6;
-		
-		// Name
-
-		Name[1] = PasswordChunkMedium & 0xFF;
-		PasswordChunkMedium >>= 8;
-
-		Name[2] = PasswordChunkMedium & 0xFF;
-		PasswordChunkMedium >>= 8;
-
-		Name[3] = PasswordChunkMedium & 0xFF;
-
-		Name[0] = PasswordChunkHigh & 0xFF;
-		PasswordChunkHigh >>= 8;
-		
-		// Score (2/2)
-
-		Score = PasswordChunkHigh & 0xFFFFF;
-		PasswordChunkHigh >>= 20;
+		Speed = PasswordChunk[2] & 0x3;
+		PasswordChunk[2] >>= 2;
 		
 		// Checksum (2/2)
 
-		Checksum = (Checksum << 2) | (PasswordChunkHigh & 0x3);
-		Checksum &= 0x3FF;
+		Checksum = ((PasswordChunk[2] & 0xFF) << 2) | Checksum;
+		
+		// Level (2/2)
+
+		Level = (Level << 6) | (PasswordChunk[1] & 0x3F);
+		PasswordChunk[1] >>= 6;
+		
+		// Player Name
+
+		PlayerName[1] = PasswordChunk[1] & 0xFF;
+		PasswordChunk[1] >>= 8;
+
+		PlayerName[2] = PasswordChunk[1] & 0xFF;
+		PasswordChunk[1] >>= 8;
+
+		PlayerName[3] = PasswordChunk[1] & 0xFF;
+
+		PlayerName[0] = PasswordChunk[0] & 0xFF;
+		PasswordChunk[0] >>= 8;
+		
+		// Score
+
+		Score = PasswordChunk[0] & 0xFFFFF;
+		PasswordChunk[0] >>= 20;
 		
 		// Test Checksum
 		
-		TestChecksum = GameMode + Level + Speed;
+		TestChecksum = GameMode;
+		TestChecksum += Level;
+		TestChecksum += Speed;
 		TestChecksum += (Score & 0x3FF);
 		TestChecksum += ((Score >> 10) & 0x3FF);
 		TestChecksum += (Time & 0xFF);
 		TestChecksum += ((Time >> 8) & 0xFF);
-		TestChecksum += Name[0] + Name[1] + Name[2] + Name[3];
+		TestChecksum += PlayerName[0];
+		TestChecksum += PlayerName[1];
+		TestChecksum += PlayerName[2];
+		TestChecksum += PlayerName[3];
 		TestChecksum &= 0x3FF;
 		
 		if (Checksum == TestChecksum) {
@@ -205,7 +191,7 @@ function _DecodePassword(Password) {
 				return;
 			}
 			
-			// Game Level
+			// Level
 			
 			if (GameMode != GameModeClassic) {
 				document.getElementById("level-text").innerHTML = "Game Level:";
@@ -217,7 +203,7 @@ function _DecodePassword(Password) {
 				else if (Level == GameLevelHard)
 					document.getElementById("level").innerHTML = "Hard";
 				else {
-					_WriteError("Invalid game level");
+					_WriteError("Invalid non-classic game level");
 					
 					return;
 				}
@@ -225,8 +211,8 @@ function _DecodePassword(Password) {
 				document.getElementById("level-text").innerHTML = "Virus Level:";
 				document.getElementById("level").innerHTML = Level;
 				
-				if (Level < VirusLevelMinimum || Level > VirusLevelMaximum) {
-					_WriteError("Invalid virus level");
+				if (Level > VirusLevelMaximum) {
+					_WriteError("Invalid classic virus level");
 					
 					return;
 				}
@@ -248,7 +234,7 @@ function _DecodePassword(Password) {
 			
 			// Score
 			
-			if (Score < ScoreMinimum || Score > ScoreMaximum) {
+			if (Score > ScoreMaximum) {
 				_WriteError("Invalid score");
 				
 				return;
@@ -261,7 +247,7 @@ function _DecodePassword(Password) {
 			
 			// Time
 			
-			if (Time < TimeMinimum || Time > TimeMaximum) {
+			if (Time > TimeMaximum) {
 				_WriteError("Invalid time");
 				
 				return;
@@ -273,28 +259,20 @@ function _DecodePassword(Password) {
 			
 			document.getElementById("name").innerHTML = "";
 			
-			for (var i=0;i<Name.length;i++) {
-				if (NameFontValidCharacters.indexOf(Name[i]) == -1) {
-					_WriteError("Invalid name");
+			for (var i=0;i<PlayerName.length;i++) {
+				if (PlayerNameFontValidCharacters.indexOf(PlayerName[i]) == -1) {
+					_WriteError("Invalid player name");
 					
 					return;
 				}
 				
-				while (Name[i].toString().length < 3)
-					Name[i] = "0" + Name[i];
+				while (PlayerName[i].toString().length < 3)
+					PlayerName[i] = "0" + PlayerName[i];
 				
-				if (Name[i] == "000")
-					document.getElementById("name").innerHTML += "<img class=\"name-empty\" src=\"font/" + Name[i] + ".png\">";
+				if (PlayerName[i] == "000")
+					document.getElementById("name").innerHTML += "<img class=\"name-empty\" src=\"font/" + PlayerName[i] + ".png\">";
 				else
-					document.getElementById("name").innerHTML += "<img class=\"name\" src=\"font/" + Name[i] + ".png\">";
-			}
-			
-			// Frame Count (modulo 1024)
-			
-			if (FrameCount < FrameCountMinimum || FrameCount > FrameCountMaximum) {
-				_WriteError("Invalid frame count");
-				
-				return;
+					document.getElementById("name").innerHTML += "<img class=\"name\" src=\"font/" + PlayerName[i] + ".png\">";
 			}
 			
 			// Show result

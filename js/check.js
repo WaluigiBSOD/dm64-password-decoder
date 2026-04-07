@@ -30,7 +30,7 @@ function _CheckPassword() {
 	Password = Password.toUpperCase();
 	
 	for (var i=0;i<Password.length;i++)
-		if (PasswordCharacters.indexOf(Password.charAt(i)) == -1) {
+		if (PasswordValidCharacters.indexOf(Password.charAt(i)) == -1) {
 			Password = Password.slice(0,i) + Password.slice(i + 1,Password.length);
 			
 			i--;
