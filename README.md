@@ -10,7 +10,7 @@ The original implementation of the password generation algorithm inside the sour
 
 ### Obtaining A Password In-Game
 
-After either winning or losing a Classic, Score Attack or Marathon game press **Z**, **R**, **L** and **D-Pad Left** together when the menu is on screen.
+After either winning or losing a Classic, Score Attack or Marathon game press **Z**, **R**, **L** and **D-Pad Left** together when the Replay menu is on screen.
 
 More info is available [on TCRF](https://tcrf.net/Dr._Mario_64#Passwords).
 
