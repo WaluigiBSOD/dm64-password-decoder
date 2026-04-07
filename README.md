@@ -8,7 +8,7 @@ Both this program and [Dr. Mario 64 Password Tool](https://github.com/WaluigiBSO
 
 The original implementation of the password generation algorithm inside the source code of the game can be found at `bbgames.7z\bbgames.tar\d1\routefree\bbgames\depot\dm64\src\passwd.c`, for some reason the password decoding algorithm is absent but it can be easily obtained from the generation one.
 
-### Obtaining A Password In-Game
+### Obtaining a Password In-Game
 
 After either winning or losing a Classic, Score Attack or Marathon game press **Z**, **R**, **L** and **D-Pad Left** together when the Replay menu is on screen.
 
