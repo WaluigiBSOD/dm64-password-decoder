@@ -208,14 +208,15 @@ function _DecodePassword(Password) {
 					return;
 				}
 			} else {
-				document.getElementById("level-text").innerHTML = "Virus Level:";
-				document.getElementById("level").innerHTML = Level;
-				
 				if (Level > VirusLevelMaximum) {
 					_WriteError("Invalid classic virus level");
 					
 					return;
 				}
+				
+				document.getElementById("level-text").innerHTML = "Virus Level:";
+				
+				document.getElementById("level").innerHTML = Level;
 			}
 			
 			// Speed
@@ -255,7 +256,7 @@ function _DecodePassword(Password) {
 			
 			document.getElementById("time").innerHTML = _FormatTime(Time);
 			
-			// Name
+			// Player Name
 			
 			document.getElementById("name").innerHTML = "";
 			
